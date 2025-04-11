@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.23;
 
-import "forge-std/Test.sol";
+import "../lib/forge-std/src/Test.sol";
 import "../src/EggstravaganzaNFT.sol";
 import "../src/EggVault.sol";
 import "../src/EggHuntGame.sol";
@@ -15,7 +15,6 @@ contract EggGameTest is Test {
     address bob;
 
     error OwnableUnauthorizedAccount(address account);
-
 
     function setUp() public {
         owner = address(this); // The test contract is the deployer/owner.
@@ -229,7 +228,7 @@ contract EggGameTest is Test {
     // -----------------------------------------
     // Additional Edge Cases
     // -----------------------------------------
-    function testGameStatusBeforeStart() public {
+    function testGameStatusBeforeStart() public view {
         // When no game is active, getGameStatus should report accordingly.
         string memory status = game.getGameStatus();
         assertEq(status, "Game is not active");

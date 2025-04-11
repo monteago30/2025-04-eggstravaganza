@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.23;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
+import "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 
 contract EggstravaganzaNFT is ERC721, Ownable {
     /// @notice The only allowed contract to mint eggs (e.g. the EggHuntGame)
@@ -12,9 +12,7 @@ contract EggstravaganzaNFT is ERC721, Ownable {
     uint256 public totalSupply;
 
     /// @notice Constructor initializes the ERC721 token with a name and symbol.
-    constructor(string memory _name, string memory _symbol)
-        ERC721(_name, _symbol) Ownable(msg.sender)
-    {}
+    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) Ownable(msg.sender) {}
 
     /// @notice Only the owner can set the game contract allowed to mint eggs.
     function setGameContract(address _gameContract) external onlyOwner {
